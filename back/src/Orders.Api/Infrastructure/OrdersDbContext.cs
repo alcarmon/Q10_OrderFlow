@@ -22,6 +22,7 @@ public class OrdersDbContext(DbContextOptions<OrdersDbContext> dbCpontextOptions
             order.Property(x => x.FechaCreacion).HasColumnType("datetime2")
                 .HasConversion(v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
             order.HasIndex(x => x.FechaCreacion);
+            order.Property<byte[]>("RowVersion").IsRowVersion();
         });
 
         modelBuilder.Entity<Product>(product =>
