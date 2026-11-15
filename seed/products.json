@@ -1,0 +1,5 @@
+[
+  { "sku": "ABC-01", "nombre": "Señuelo X-rap 06", "disponible": 100 },
+  { "sku": "ABC-02", "nombre": "Señuelo Yo-zuri walk", "disponible": 50 },
+  { "sku": "ABC-03", "nombre": "Reel Shimano XD 500", "disponible": 10 }
+]

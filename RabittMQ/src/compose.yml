@@ -1,13 +1,22 @@
-# Docker services
 services:
   rabbitmq:
     image: rabbitmq:4.4.0-management
     container_name: rabbitmq
-    restart: always
-    tty: true
-    stdin_open: true
+    restart: unless-stopped
     ports:
-      - "5672:5672"   # RabbitMQ default port
-      - "15672:15672" # RabbitMQ management UI
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # panel de administración
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     volumes:
       - ./enable_plugins:/etc/rabbitmq/enabled_plugins:ro
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  rabbitmq_data:
