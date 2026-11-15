@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Orders.Api.Endpoints;
 using Orders.Api.Infrastructure;
 using MassTransit;
+using Orders.Api.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ ArgumentException.ThrowIfNullOrWhiteSpace(rabbit.Password, "RabbitMq:Password");
 
 builder.Services.AddMassTransit(x =>
 {
+    x.AddConsumer<OrderStockResultConsumer>();
+
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host(rabbit.Host, "/", h =>
@@ -26,6 +29,8 @@ builder.Services.AddMassTransit(x =>
             h.Username(rabbit.Username);
             h.Password(rabbit.Password);
         });
+
+        cfg.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(2)));
         cfg.ConfigureEndpoints(context);
     });
 });
