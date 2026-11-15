@@ -1,0 +1,394 @@
+Compilando...
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [MigrationId], [ProductVersion]
+      FROM [__EFMigrationsHistory]
+      ORDER BY [MigrationId];
+info: Microsoft.EntityFrameworkCore.Migrations[20405]
+      No migrations were applied. The database is already up to date.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Sku]
+      FROM [Products] AS [p]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (14ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(@__p_0) [o].[EventId], [o].[CreadoEn], [o].[Payload], [o].[PublicadoEn], [o].[Tipo]
+      FROM [Outbox] AS [o]
+      WHERE [o].[PublicadoEn] IS NULL
+      ORDER BY [o].[CreadoEn]
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5185
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Q10\back\src\Orders.Api
+warn: MassTransit[0]
+      Connection Failed: rabbitmq://localhost/
+      RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+info: MassTransit[0]
+      Retrying 00:00:05.3168028: Broker unreachable: alcarmon@localhost:5672/
+      MassTransit.RabbitMqConnectionException: Broker unreachable: alcarmon@localhost:5672/
+       ---> RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+         --- End of inner exception stack trace ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 140
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateSharedConnection(Task`1 contextTask, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 79
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.SharedChannelContextFactory.CreateSharedChannel(Task`1 context, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\SharedChannelContextFactory.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 39
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 208
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.Run() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 145
+fail: Orders.Api.Infrastructure.OutboxDispatcher[0]
+      No se pudo publicar desde el outbox; se reintentará en 2s.
+      System.Threading.Tasks.TaskCanceledException: A task was canceled.
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 32
+         at Orders.Api.Infrastructure.OutboxDispatcher.PublishAsync(IPublishEndpoint bus, OutboxMessage message, CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 75
+         at Orders.Api.Infrastructure.OutboxDispatcher.DispatchPendingAsync(CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 58
+         at Orders.Api.Infrastructure.OutboxDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 27
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(@__p_0) [o].[EventId], [o].[CreadoEn], [o].[Payload], [o].[PublicadoEn], [o].[Tipo]
+      FROM [Outbox] AS [o]
+      WHERE [o].[PublicadoEn] IS NULL
+      ORDER BY [o].[CreadoEn]
+warn: MassTransit[0]
+      Connection Failed: rabbitmq://localhost/
+      RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+info: MassTransit[0]
+      Retrying 00:00:07.5686306: Broker unreachable: alcarmon@localhost:5672/
+      MassTransit.RabbitMqConnectionException: Broker unreachable: alcarmon@localhost:5672/
+       ---> RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+         --- End of inner exception stack trace ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 140
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateSharedConnection(Task`1 contextTask, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 79
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.SharedChannelContextFactory.CreateSharedChannel(Task`1 context, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\SharedChannelContextFactory.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 39
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 208
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.Run() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 145
+fail: Orders.Api.Infrastructure.OutboxDispatcher[0]
+      No se pudo publicar desde el outbox; se reintentará en 2s.
+      System.Threading.Tasks.TaskCanceledException: A task was canceled.
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 32
+         at Orders.Api.Infrastructure.OutboxDispatcher.PublishAsync(IPublishEndpoint bus, OutboxMessage message, CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 75
+         at Orders.Api.Infrastructure.OutboxDispatcher.DispatchPendingAsync(CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 58
+         at Orders.Api.Infrastructure.OutboxDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 27
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(@__p_0) [o].[EventId], [o].[CreadoEn], [o].[Payload], [o].[PublicadoEn], [o].[Tipo]
+      FROM [Outbox] AS [o]
+      WHERE [o].[PublicadoEn] IS NULL
+      ORDER BY [o].[CreadoEn]
+warn: MassTransit[0]
+      Connection Failed: rabbitmq://localhost/
+      RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+info: MassTransit[0]
+      Retrying 00:00:13.2607780: Broker unreachable: alcarmon@localhost:5672/
+      MassTransit.RabbitMqConnectionException: Broker unreachable: alcarmon@localhost:5672/
+       ---> RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+         --- End of inner exception stack trace ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 140
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateSharedConnection(Task`1 contextTask, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 79
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.SharedChannelContextFactory.CreateSharedChannel(Task`1 context, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\SharedChannelContextFactory.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 39
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 208
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.Run() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 145
+fail: Orders.Api.Infrastructure.OutboxDispatcher[0]
+      No se pudo publicar desde el outbox; se reintentará en 2s.
+      System.Threading.Tasks.TaskCanceledException: A task was canceled.
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 32
+         at Orders.Api.Infrastructure.OutboxDispatcher.PublishAsync(IPublishEndpoint bus, OutboxMessage message, CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 75
+         at Orders.Api.Infrastructure.OutboxDispatcher.DispatchPendingAsync(CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 58
+         at Orders.Api.Infrastructure.OutboxDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 27
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(@__p_0) [o].[EventId], [o].[CreadoEn], [o].[Payload], [o].[PublicadoEn], [o].[Tipo]
+      FROM [Outbox] AS [o]
+      WHERE [o].[PublicadoEn] IS NULL
+      ORDER BY [o].[CreadoEn]
+warn: MassTransit[0]
+      Connection Failed: rabbitmq://localhost/
+      RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+fail: Orders.Api.Infrastructure.OutboxDispatcher[0]
+      No se pudo publicar desde el outbox; se reintentará en 2s.
+      System.Threading.Tasks.TaskCanceledException: A task was canceled.
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 32
+         at Orders.Api.Infrastructure.OutboxDispatcher.PublishAsync(IPublishEndpoint bus, OutboxMessage message, CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 75
+         at Orders.Api.Infrastructure.OutboxDispatcher.DispatchPendingAsync(CancellationToken ct) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 58
+         at Orders.Api.Infrastructure.OutboxDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Q10\back\src\Orders.Api\Infrastructure\OutboxDispatcher.cs:line 27
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(@__p_0) [o].[EventId], [o].[CreadoEn], [o].[Payload], [o].[PublicadoEn], [o].[Tipo]
+      FROM [Outbox] AS [o]
+      WHERE [o].[PublicadoEn] IS NULL
+      ORDER BY [o].[CreadoEn]
+warn: MassTransit[0]
+      Connection Failed: rabbitmq://localhost/
+      RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+info: MassTransit[0]
+      Retrying 00:00:34.1203646: Broker unreachable: alcarmon@localhost:5672/
+      MassTransit.RabbitMqConnectionException: Broker unreachable: alcarmon@localhost:5672/
+       ---> RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+       ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+       ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+       ---> System.Net.Sockets.SocketException (10061): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+         at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+         at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         --- End of inner exception stack trace ---
+         at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 113
+         --- End of inner exception stack trace ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 140
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateSharedConnection(Task`1 contextTask, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\ConnectionContextFactory.cs:line 79
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit\SupervisorExtensions.cs:line 139
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+      --- End of stack trace from previous location ---
+         at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in D:\a\MassTransit\MassTransit\src\MassTransit.Abstractions\Internals\Extensions\TaskExtensions.cs:line 72
+      --- End of stack trace from previous location ---
+         at MassTransit.RabbitMqTransport.SharedChannelContextFactory.CreateSharedChannel(Task`1 context, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\Transports\MassTransit.RabbitMqTransport\RabbitMqTransport\SharedChannelContextFactory.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 51
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 61
+         at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Agents\PipeContextSupervisor.cs:line 67
+         at MassTransit.Transports.HostConfigurationRetryExtensions.Retry(IHostConfiguration hostConfiguration, Func`1 factory, CancellationToken cancellationToken, CancellationToken stoppingToken) in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\HostConfigurationRetryExtensions.cs:line 39
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 208
+         at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.Run() in D:\a\MassTransit\MassTransit\src\MassTransit\Transports\ReceiveTransport.cs:line 145
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
