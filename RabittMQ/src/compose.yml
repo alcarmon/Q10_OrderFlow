@@ -1,0 +1,13 @@
+# Docker services
+services:
+  rabbitmq:
+    image: rabbitmq:4.4.0-management
+    container_name: rabbitmq
+    restart: always
+    tty: true
+    stdin_open: true
+    ports:
+      - "5672:5672"   # RabbitMQ default port
+      - "15672:15672" # RabbitMQ management UI
+    volumes:
+      - ./enable_plugins:/etc/rabbitmq/enabled_plugins:ro
