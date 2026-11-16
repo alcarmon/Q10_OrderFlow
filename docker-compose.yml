@@ -1,0 +1,85 @@
+name: orderflow
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD:-OrderFlow_Dev2026}
+    ports:
+      - "${SQL_PORT:-14333}:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    healthcheck:
+      test: >-
+        /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P "$$MSSQL_SA_PASSWORD" -Q "SELECT 1" -b
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  rabbitmq:
+    image: rabbitmq:4.4.0-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-orderflow}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-OrderFlow_Dev2026}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  orders-api:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.orders
+    environment:
+      ConnectionStrings__OrdersDb: Server=sqlserver,1433;Database=OrdersDb;User Id=sa;Password=${SQL_SA_PASSWORD:-OrderFlow_Dev2026};TrustServerCertificate=True
+      RabbitMq__Host: rabbitmq
+      RabbitMq__Username: ${RABBITMQ_USER:-orderflow}
+      RabbitMq__Password: ${RABBITMQ_PASS:-OrderFlow_Dev2026}
+      Seed__ProductsPath: /seed/products.json
+    volumes:
+      - ./seed:/seed:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    restart: unless-stopped
+
+  inventory-worker:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.inventory
+    environment:
+      ConnectionStrings__InventoryDb: Server=sqlserver,1433;Database=InventoryDb;User Id=sa;Password=${SQL_SA_PASSWORD:-OrderFlow_Dev2026};TrustServerCertificate=True
+      RabbitMq__Host: rabbitmq
+      RabbitMq__Username: ${RABBITMQ_USER:-orderflow}
+      RabbitMq__Password: ${RABBITMQ_PASS:-OrderFlow_Dev2026}
+      Seed__ProductsPath: /seed/products.json
+    volumes:
+      - ./seed:/seed:ro
+    depends_on:
+      sqlserver: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+    restart: unless-stopped
+
+  front:
+    build: ./front
+    restart: unless-stopped
+    environment:
+      ORDERS_API_URL: http://orders-api:8080
+    ports:
+      - "${FRONT_PORT:-8081}:80"
+    depends_on:
+      - orders-api
+
+volumes:
+  sqlserver_data:
+  rabbitmq_data:

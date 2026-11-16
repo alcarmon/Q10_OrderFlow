@@ -1,0 +1,17 @@
+server {
+  listen 80;
+  root /usr/share/nginx/html;
+  index index.html;
+
+  # /api/orders -> {ORDERS_API_URL}/orders (el "/" final elimina el prefijo /api)
+  location /api/ {
+    proxy_pass ${ORDERS_API_URL}/;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+  }
+
+  # Rutas de Angular (/pedidos, /pedidos/nuevo) sirven index.html
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}
