@@ -12,7 +12,7 @@ using Orders.Api.Infrastructure;
 namespace Orders.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(OrdersDbContext))]
-    [Migration("20261115212607_AddOrderRowVersion")]
+    [Migration("20261116022959_AddOrderRowVersion")]
     partial class AddOrderRowVersion
     {
         /// <inheritdoc />
@@ -46,6 +46,11 @@ namespace Orders.Api.Infrastructure.Migrations
 
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<string>("Sku")
                         .IsRequired()
